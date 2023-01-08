@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title>Project Name : 3D interactive environments and avatars</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <span class="iconify home-icon" data-icon="iconoir:home" style="color: #85023e;"></span>
+        </a>
+        <a href="human.html">
+            <p class="nav-title" style="color:white">DIGITAL HUMANS</p>
+        </a>
+        <a href="capture.html">
+            <p class="nav-title" style="color:white">3D & 4D CAPTURE</p>
+        </a>
+        <a href="light.html">
+            <p class="nav-title" style="color:white">VR/AR</p>
+        </a>
+        <a href="drone.html">
+            <p class="nav-title" style="color:white">COLLABORATIONS</p>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:white">PUBLICATIONS</p>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:white">CODE/DATA</p>
+        </a>
+        <a href="members.html">
+            <p class="nav-title" style="color:white">MEMBERS</p>
+        </a>
+        <a href="news.html">
+            <p class="nav-title" style="color:white">NEWS/EVENTS</p>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:white">ABOUT</p>
+        </a>
+        <a href="links.html">
+            <span class="iconify link-icon" data-icon="akar-icons:link-chain" style="color: white;"></span>  
+        </a>
+        <a href="mailto:thomas@ait.kyushu-u.ac.jp">
+            <span class="iconify mail-icon" data-icon="bytesize:mail" style="color: white;"></span>  
+        </a>
+        
+    </div>
+
+    <div class="content">
+        <div class="sidenav">
+            <div class="sections">
+                <div class="topic">
+                    <a href="#human-intro">
+                        <p>3D shape from a single image</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#human-ref">
+                        <p>Clothed body animation</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#human-pipeline">
+                        <p>2D human pose estimation</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#vr-app">
+                        <p>VPopulating VR spaces with digital humans</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#human-tuto">
+                        <p>Tutorial</p>
+                    </a>
+                </div>
+                <a href="https://github.com/LeaRostoker/Kyuday-project-Lea">
+                    <span class="iconify github-link" data-icon="iconoir:github-outline" style="color: #85023e;"></span>
+                </a>
+            </div>
+            
+        </div>
+        <div class="main">
+            <div class="main-content" id="human-intro">
+                <p><br><br></p>
+                <p><br><br></p>
+                <p class="chapter-title">INTRODUCTION</p>
+                <img class="centered-img" src="img/human-goal.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text">Detailed animations of human avatars must be included into the VR system to study the <b>impact of the design</b> on the people
+                lifestyle. We will develop a new <b>AI-based</b> approach for animated 3D human avatar generation in a given 3D scene. To learn
+                how to animate and consistently deform the human body and clothes we must first build a new <b>4D</b> (3D+time) human body and
+                cloth <b>database</b>. <br>
+                With our 4D human dataset we will design a network to generate <b>realistic animation</b> of humans wearing loose clothes. This
+                will allow us to <b>populate scenes</b> with diverse human avatars performing daily activities.</p>
+                <br><br>
+            </div>
+            <div class="main-content" id="human-ref">
+                <p class="chapter-title">RELATED WORK</p>
+                <p class="chapter-small-title">PLACING CHARACTERS IN A SCENE</p>
+                <p class="chapter-text">The first thing we need for our project is to find our characters an <b>appropriate placement</b> in the scene. We decided on using <a href="https://posa.is.tue.mpg.de/index.html"><b style="color: #85023e;">POSA</b></a>
+                (Populataing 3D Scenes by Learning Human-Scene Interaction). POSA is based on <b>semantics</b> and <b>SDFs</b> (Signed Distance Function) to represent the scenes and uses the <b>SMPL-X</b> body model for the avatars.
+                With a <b>generator</b> trained using a <b>cVAE</b> (conditionnal Variational Auto Encoder) POSA predicts the <b>best affordances</b> for a character's body in a certain position.
+                It basically provides a map of the body with <b>likely contacts</b>. 
+                <br> However, the issue we will be faced with is that POSA requires some files describing the scene's SDF and semantics. This means we can't directly give POSA our custom scenes in OBJ format. We will need to compute the additionnal information POSA requires to work.
+                </p> <br>
+                <img class="centered-img" src="img/posa-results.png" alt="POSA results" style="width: 400px; height: 400px;"> <br>
+                    
+                <p class="chapter-small-title">MOTION INTERPOLATION</p>
+                <p class="chapter-text">A second important field we explored is <b>Motion Interpolation</b>. 
+                <br> There were two particular papers we took a deep interest in : <br><br>
+                    <ul>
+                        <li> <a href="https://montreal.ubisoft.com/en/automatic-in-betweening-for-faster-animation-authoring/"> <b style="color: #85023e;">Robust Motion In-Betweening</b></a></li>
+                        <br><li> <a href="https://arxiv.org/abs/2103.00776"> <b style="color: #85023e;">Single Shot Motion Completion with Transformer</b></a></li>
+                    <br></ul>
+                </p>
+                <p class="chapter-text">Both models complete motion between given <b>past frames</b> and a yet to come <b>target keyframe</b>. They are also able to create <b>whole cycles of motion</b>.
+                    For example, if the past and target keyframes are part of a walking cycle, the models are able to generate multiple steps to reach the next target, no matter the distance between the two keyframes.
+                    However, these models do not handle interactions with a scene. The second problem for us is that the code available for either of these model.
+                </p> <br><br>
+                <p class="chapter-small-title">CHARACTER INTERACTION WITH A SCENE</p>
+                <p class="chapter-text">Last field we took interest in is <b>HSI</b> (Human-Scene Interaction). The paper that caught our interest is <a href="https://github.com/mohamedhassanmus/SAMP"><b style="color: #85023e;">SAMP</b></a>
+                    (Stochastic Scene-Aware Motion Completion). This project regroups the handling for HSI and Motion Completion. Given an initial pose and scene configuration,
+                    SAMP will find a good <b>goal target position</b> and then compute the <b>motion</b> to reach it while following the <b>best path</b> to avoid the scene's obstacles.
+                    <img class="centered-img" src="img/samp-pipeline.png" alt="Graph of SAMP architecture"> <br>
+                </p>
+                <br><br>
+            
+            </div>
+            <div class="main-content" id="human-pipeline">
+                <p class="chapter-title">OUR APPROCH AND PIPELINE</p>
+                <img class="centered-img" src="img/human-pipeline.png" alt="Pipeline graph" style="width: 1000px; height: auto;"> <br>
+                <p class="chapter-text">To achieve our goal, we decided to combine both POSA and SAMP technologie. We initially wanted to add Robust Motion In-Betweening to the equation. However, their code is not available.
+                    <br> The <b>first</b> step in our process is to apply POSA on a folder of posed characters for a new custom scene.
+                    The difficulty here is to make our scene usable by POSA. As stated before, we shall then need files describing the SDF and the semantics of said scene.
+                    To obtain those informations, we created an algorithm capable of such a task and we tested it's reliablility with a <b>Marching Cubes</b> algorithm.
+                    Our algorithm works with <b>tetrahedralized meshes</b> and we used python's <b>PyMesh</b> library to obtain such a mesh.
+                    We then make tests to see if the points in our environment are inside a tetrahedra our not.
+                    We tested this approch and it successfully works : we obtain the scene back after applying Marching Cubes and most importantly, POSA is able to interpret our results and to succesfully place characters in our custom scene.               </p>
+            </div>
+            <div class="main-content" id="vr-app">
+                <p class="chapter-title">VIRTUAL REALITY APPLICATION FOR ARCHITECTS</p>
+                <p class="chapter-text">WORK IN PROGRESS ...</p>
+            </div>
+            <div class="main-content" id="human-tuto">
+                <p class="chapter-title">TUTORIAL : HOW CAN YOU USE OUR APP</p>
+                <p class="chapter-text">WORK IN PROGRESS ...</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

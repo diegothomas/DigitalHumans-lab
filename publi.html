@@ -1,0 +1,128 @@
+<html>
+
+<head>
+    <title>Project Name : 3D interactive environments and avatars</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <span class="iconify home-icon" data-icon="iconoir:home" style="color: white;"></span>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:#85023e">ABOUT</p>
+        </a>
+        <a href="human.html">
+            <p class="nav-title" style="color:white">HUMAN</p>
+        </a>
+        <a href="light.html">
+            <p class="nav-title" style="color:white">VR</p>
+        </a>
+        <a href="drone.html">
+            <p class="nav-title" style="color:white">DRONE</p>
+        </a>
+        <a href="members.html">
+            <p class="nav-title" style="color:white">MEMBERS</p>
+        </a>
+        <a href="links.html">
+            <span class="iconify link-icon" data-icon="akar-icons:link-chain" style="color: white;"></span>
+        </a>
+        <a href="mailto:thomas@ait.kyushu-u.ac.jp">
+            <span class="iconify mail-icon" data-icon="bytesize:mail" style="color: white;"></span>  
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="sidenav">
+            <div class="sections">
+                <div class="topic">
+                    <a href="#introAbout">
+                        <p>Introduction</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#goal">
+                        <p>Goal</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#team">
+                        <p>Team</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-content" id="introAbout">
+                <p><br><br></p>
+                <p><br><br></p>
+                <p class="chapter-title">INTRODUCTION <br></p>
+                
+                <p class="chapter-text">A new approach for supporting architectural works with virtual reality environments.
+                <b>Virtual Reality</b>  (VR) provides new interactive interfaces that bend the rules of physics and allows people to explore
+                virtual space intuitively without complicating or confusing process. For <b>architectural visualization</b>, this allows people
+                to be present in the project, observing, hearing, and experiencing its architecture (which is much faster than building
+                physical models and replicas). With the use of <b>computer technologies</b>, fully virtual environments can be created to
+                generate <b>real-time</b> experience and walk throughs for a project. However, creating and rendering fully animated simulated
+                environment with realistic outdoor views of the cities and realistic people is extremely <b>difficult</b> and <b>time consuming</b>.
+                The goal of this research project is to propose a new approach for <b>semi-automatic</b> generation of <b>realistic</b> animated
+                environments to support VR-based architectural visualization. 
+                <br> <br>
+                The main questions to solve in this project are two folds: <br> <br>
+                <ul>
+                    <li>How to render realistic views of the city as it will be viewed from the windows? This implies modeling not only the
+                    3D geometry but also the texture and reflectance properties of the facades.</li> <br>
+                    <li>How to populate the 3D scene with realistic animated humans?</li> <br>
+                </ul>
+                <br>
+                Our approach to answer these questions is to :  <br><br>
+                <ul>
+                    <li>Generate a reflectance dataset to learn the
+                    reflectance properties of facades from captured images.</li> <br>
+                    <li>Populate virtual 3D scenes with animated virtual avatars
+                    of humans that perform daily actions.</li>
+                </ul>
+                </p>
+                <br><br>
+        
+        
+            </div>
+            <div class="main-content" id="goal">
+                <p class="chapter-title"> <br> OUR GOAL <br></p>
+                <img class="centered-img" src="img/about-goal.png" alt="Goal explanation image">
+                <br>
+                <p class="chapter-text"> The goal of this project is to simulate <b>realistic views of cities</b> as viewed from the <b>inside of a virtual building</b>
+                with human activities both <b>indoor</b> and <b>outdoor</b>. These virtual views can be displayed on <b>VR head-mounted displays</b> (like the
+                Oculus Quest 2). To achieve these goals the main challenges to tackle are : <br> <br>
+                <ul>
+                    <li>how to synthesize views of the facades of
+                    real buildings as they will appear at different time of the day from various viewpoints that correspond to the many
+                    windows in different floors of the building.</li> <br>
+                    <li>how to populate the virtual scenes (indoor and outdoor) with virtual
+                    avatars of humans performing realistic actions (like seating at a table or walking in the streets).</li> <br>
+                </ul> 
+                </p>
+                <p class="chapter-text">Several platforms provide 3D models of buildings in the city. However, simply rendering views from this data is not
+                satisfactory. This is because putting the <b>texture</b> images on the facades to render images of the façades from different
+                viewpoints and under varying illumination produces <b>unrealistic</b> effects. To synthesize realistic views, color, roughness
+                and reflectance properties are necessary. Among those parameters, <b>reflectance</b> is the most difficult one to estimate from
+                just a few images.
+                <b>Animated realistic humans</b> must be included in the VR space for fully <b>immersive</b> experience. Owing to the recent
+                development of <b>deep neural networks</b>, <b>humans</b> can be <b>automatically</b> put into virtual scenes in a consistent manner.
+                However, no temporal consistency has been proposed to generate consistent animations of human actions. Figure 1
+                illustrates the key concept of our project.
+                </p>
+                <br><br>
+        
+            </div>
+            <div class="main-content" id="team">
+                <p class="chapter-title"> <br> OUR TEAM <br> </p>
+                <p class="chapter-text">Here will be presented our team, who we are and what we worked on.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

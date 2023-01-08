@@ -1,0 +1,215 @@
+<html>
+
+<head>
+    <title>Project Name : 3D interactive environments and avatars</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <span class="iconify home-icon" data-icon="iconoir:home" style="color: white;"></span>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:white">ABOUT</p>
+        </a>
+        <a href="human.html">
+            <p class="nav-title" style="color:white">HUMAN</p>
+        </a>
+        <a href="light.html">
+            <p class="nav-title" style="color:white">VR</p>
+        </a>
+        <a href="drone.html">
+            <p class="nav-title" style="color:#85023e">DRONE</p>
+        </a>
+        <a href="members.html">
+            <p class="nav-title" style="color:white">MEMBERS</p>
+        </a>
+        <a href="links.html">
+            <span class="iconify link-icon" data-icon="akar-icons:link-chain" style="color: white;"></span>
+        </a>
+        <a href="mailto:thomas@ait.kyushu-u.ac.jp">
+            <span class="iconify mail-icon" data-icon="bytesize:mail" style="color: white;"></span>  
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="sidenav">
+            <div class="sections">
+                <div class="topic">
+                    <a href="#droneIntro">
+                        <p>Introduction</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#droneComparison">
+                        <p>Technologies comparison</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#droneConclusion">
+                        <p>Conclusion</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#droneDemos">
+                        <p>Research Demos</p>
+                    </a>
+                </div>
+                <a href="https://">
+                    <span class="iconify github-link" data-icon="iconoir:github-outline" style="color: #85023e;"></span>
+                </a>
+            </div>
+    
+        </div>
+        <div class="main">
+            <div class="main-content" id="droneIntro">
+                <p><br><br></p>
+                <p><br><br></p>
+                <p class="chapter-title" >INTRODUCTION <br></p>
+                <p class="chapter-text">In recent years <b>drone</b> and <b>LIDAR</b> technology have advanced to the point of threatening to completely overtake <b>aero
+                    photogrammetry</b>. However there are still some factors that have hampered the process of the construction industry
+                    fully
+                    embracing this new technology with perhaps the most critical being the current price tag and the technical
+                    expertise
+                    required for the maintenance that accompanies long-range LIDAR equipment.
+                    <br>
+                    <br>
+                    The purpose of our research is to tackle these problems, both economic and technical, by offering a third
+                    alternative
+                    for site surveying with the use of a SLAM equipped drone that applies multiple depth cameras both expanding and
+                    strengthening the field that the drone could map, obtaining an accurate survey of a site, with the final goal of
+                    integrating FPV (first-person view) capabilities and MIXED REALITY applications to the drone making it possible
+                    to
+                    virtually project structures into the real world overlapping the live feed from the drone and visualize them
+                    using VR
+                    googles.
+                </p> <br>
+                <br> <img class="centered-img" src="img/drone-survey.png" alt="Representation of drone surveying "
+                    style="width: 400px; height: auto"> <br>
+                <p class="chapter-text">We believe that it will be possible to make a prototype that could become a viable alternative with capabilities
+                    of
+                    precise scanning and through the aid of simultaneous photography apply an AI module for semantic segmentation
+                    that will
+                    label the elements in a site such as trees, terrain materials, and existing buildings and input this information
+                    so that
+                    a more accurate 3d reconstruction can be made.
+            
+                    <br>
+                    <br>
+                    The “SLAM UAV drone” will then interpret the data from geo-positional information combining it with mapped data
+                    and the
+                    labeling component, to produce a virtual 3-dimensional representation of the site in a process guided towards
+                    predicting
+                    a theoretical ideal placing of a building, on the targeted site, using a multi-objective optimization process
+                    powered by
+                    the AI module holding the understanding of the components of the site and processed on the onboard computer
+                    attached to
+                    the drone.
+                    <br>
+                    <br>
+                    This drone prototype and the software that will accompany this equipment could theoretically enable any
+                    architect or
+                    design team to first accurately survey a site and process the data into a functional virtual twin so that on the
+                    following flight, of the drone overlooking the site, it would be possible to simulate a new planned structure or
+                    building on the site and in real-time see it, through the drone camera, from any desired height and angle
+                    contributing
+                    greatly to the understanding of the impact of said structure on a context obtaining new insights for further
+                    refining
+                    its design. In other words, this application can be used in the exploratory design phases as well as to present
+                    the
+                    final design to a client.
+                </p> <br>
+                <br> <img class="centered-img" src="img/drone-vr-simulation.png" alt="Representation of drone surveying "
+                    style="width: 400px; height: auto"> <br>
+                <p class="chapter-text">“SLAM UAV drone” is a prototype created by a team led by professor Diego Thomas from the Information Science department
+                at Kyushu University and jointly being developed with the aid of a team from the Architectural lighting laboratory led
+                by Professor Yasuko Koga from the Environmental Engineering department at Kyushu University.</p>
+            </div>
+
+            <div class="main-content" id="droneComparison">
+            
+                <p class="chapter-title"> <br> COMPARISON OF ANALYSIS BETWEEN LIDAR, PHOTOGRAMMETRY, AND SLAM UAV DRONE <br></p>
+                <p class="chapter-text">To accurately measure the potential of a SLAM UAV drone prototype it was decided that a practical approach would be to
+                judge the results based on the comparison with the data obtained from surveying a target site using ground Lidar and
+                aero photogrammetry, the most common and available methods in the market. This comparison will then be interpreted
+                ideally in the form of a measurable deviation that will allow to more accurately pinpoint where would this prototype be
+                allocated when compared to these two methodologies in terms of several factors such as accuracy, time constraint,
+                economical value, among others to be decided.
+                
+                The initial site chosen for our tests will be near the west 2 building on campus and it would be the location that we
+                are targeting for survey using the ground-level equipment as well as photogrammetry using PIX4D mapper.</p>
+                
+                <br> <img class="centered-img" src="img/drone-realdrone.png" alt="Picture of the drone we used" style="width: 400px; height: auto"> <br>
+
+                <div class="main-content" id="droneConclusion">
+                <p class="chapter-title"> <br> EXPECTED CONCLUSIONS AND OUTCOME <br> </p>
+                <p class="chapter-text">
+                    <ul>
+                        <li>
+                            <p class="chapter-text">
+                                To innovate the aerial-based survey process using SLAM technology proving that this approach brings benefits and cost-effective solutions, even increasing the value on projects.
+                            </p> 
+                        </li>
+                        <li>
+                            <p class="chapter-text">
+                                To show a working prototype capable of generating accurate site surveys recreating a logical and realistic spatial construct so that they can be useful for the development of a project. 
+                            </p>
+                        </li>
+                        <li>
+                            <p class="chapter-text">
+                                To create a process capable of not only incorporating site survey data but including AR to show a future building simulated in real-time on the site.
+                            </p>
+                        </li>
+                    </ul>
+                </p>
+                </div>
+
+                <div class="main-content" id="droneDemos">
+                    <p class="chapter-title"> <br>RESEARCH DEMONSTRATION VIDEOS<br> </p>
+                    <br> <br>
+                    <div class="chapter-container">
+                        <div class="chapter-item">
+                            <div class="chapter-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/R8GfD1zPhTQ" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe> 
+                            </div>
+                            <div class="chapter-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/BIwwsdSdST4" 
+                                    title="YouTube video player" frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="chapter-item">
+                            <div class="chapter-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/cP777nNLQ_Q" 
+                                    title="YouTube video player" frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="chapter-video">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/apqTt5Cvggs" 
+                                    title="YouTube video player"
+                                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        
+    </div>
+</body>
+
+</html>

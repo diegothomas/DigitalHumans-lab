@@ -1,0 +1,228 @@
+<html>
+
+<head>
+    <title>Digital humans</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html">
+            <span class="iconify home-icon" data-icon="iconoir:home" style="color: #85023e;"></span>
+        </a>
+        <a href="human.html">
+            <p class="nav-title" style="color:white">DIGITAL HUMANS</p>
+        </a>
+        <a href="3D-4D-capture.html">
+            <p class="nav-title" style="color:white">3D & 4D CAPTURE</p>
+        </a>
+        <a href="VR-AR.html">
+            <p class="nav-title" style="color:white">VR/AR</p>
+        </a>
+        <a href="Collaborations.html">
+            <p class="nav-title" style="color:white">COLLABORATIONS</p>
+        </a>
+        <a href="https://scholar.google.com/citations?user=PYvmkT0AAAAJ&hl=en">
+            <p class="nav-title" style="color:white">PUBLICATIONS</p>
+        </a>
+        <a href="code.html">
+            <p class="nav-title" style="color:white">CODE/DATA</p>
+        </a>
+        <a href="members.html">
+            <p class="nav-title" style="color:white">MEMBERS</p>
+        </a>
+        <a href="news.html">
+            <p class="nav-title" style="color:white">NEWS/EVENTS</p>
+        </a>
+        <a href="about.html">
+            <p class="nav-title" style="color:white">ABOUT</p>
+        </a>
+        <a href="links.html">
+            <span class="iconify link-icon" data-icon="akar-icons:link-chain" style="color: white;"></span>  
+        </a>
+        <a href="mailto:thomas@ait.kyushu-u.ac.jp">
+            <span class="iconify mail-icon" data-icon="bytesize:mail" style="color: white;"></span>  
+        </a>
+        
+    </div>
+
+    <div class="content">
+        <div class="sidenav">
+            <div class="sections">
+                <div class="topic">
+                    <a href="#3D-from-image">
+                        <p>3D shape from a single image</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#animatable-avatars">
+                        <p>Animatable avatars</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#pose-estimation">
+                        <p>Human pose estimation</p>
+                        <div class="sections">
+                            <div class="topic">
+                                <a href="#2dpose">
+                                    <p>2D human pose</p>
+                                </a>
+                            </div>
+                            <div class="topic">
+                                <a href="#3dpose">
+                                    <p>3D human pose</p>
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#pedestrian-detection">
+                        <p>3D pedestrian detection</p>
+                    </a>
+                </div>
+                <div class="topic">
+                    <a href="#vr-app">
+                        <p>Populating VR spaces with digital humans</p>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="main">
+            <div class="main-content" id="3D-from-image">
+                <p><br><br></p>
+                <p><br><br></p>
+                <p class="chapter-title">3D shape from a single image</p>
+                <div class="sub-title">TetraTSDF [Onizuka+ CVPR 2020]</div> 
+                <img class="centered-img" src="img/tetra-tsdf.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text"></p> 
+                Detailed 3D shapes of the human body reveal personal characteristics that cannot be captured with standard 2D pictures. Such information is crucial for many applications in the entertainment industry (3D video), business (virtual try-on) or medical use (self-awareness or rehabilitation). 
+                Methods that can efficiently reconstruct detailed 3D human shapes in unconstrained environments are needed. 
+                In this research project we focus on the task of detailed 3D human body reconstruction in a single shot with a standard RGB camera.
+                Learning to reconstruct complete 3D shapes of humans wearing loose clothes with using implicit representation discretized in cubic voxels is largely adopted by the community. 
+                However strong limitations remains: resolution vs memory consumption trade-off; no texture.                
+                We introduce a new implicit representation using tetrahedra that allows for direct formulation while significantly reducing the memory consumption. 
+                <br>
+                <p class="chapter-text"></p> 
+                PAPER 
+                <a href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Onizuka_TetraTSDF_3D_Human_Reconstruction_From_a_Single_Image_With_a_CVPR_2020_paper.pdf"> 
+                    <span class="iconify pdf-link" data-icon="iconoir:journal" style="color: #85023e;"></span>
+                </a>
+
+                CODE 
+                <a href="https://github.com/diegothomas/TetraTSDF">
+                    <span class="iconify pdf-link" data-icon="iconoir:github-outline" style="color: #85023e;"></span>
+                </a>
+                
+                <br>
+                <video width="640" height="480" autoplay controls>
+                    <source src="video/TetraTSDF.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                
+                <br><br>
+            </div>
+
+
+            <div class="main-content" id="animatable-avatars">
+                <p class="chapter-title">Animatable avatars</p>
+                <div class="sub-title">Two-step real time animation synthesis [Kitamura+ MIRU 2022]</div> 
+                <img class="centered-img" src="img/animatable-avatars.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text">Digital humans are the key to create immersive and lively virtual environments. 
+                    Human avatars should not only possess realistic geometric details but they should also have the ability to be animated in the digital world with realistic motion of muscles and clothes, and at high frame rate. 
+                    Currently, only professionals and artists can make realistic animatable avatars by using offline softwares like Maya or Blender, because it requires special skills, such as skeleton construction, skinning weights and physics (e.g. hair, clothes, etc...). 
+                    A wide variety of techniques have been proposed to automate the process of generating animatable avatars, such as using examples of 3D posed meshes, captured 4D data or multi-view images. 
+                    We argue that these methods require either heavy data preparation steps or time consuming post-process to transform the output into usable 3D meshes. 
+                    What we really need, instead, is a simplified data preparation pipeline and output that can be directly used in standard animation software. 
+                    We address this here for the first time.</p>
+
+                <br>
+                <video width="640" height="480" autoplay controls>
+                    <source src="video/AnimatalbeAvatars.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <br><br>
+            
+            </div>
+            <div class="main-content" id="pose-estimation">
+                <p class="chapter-title">Human pose estimation</p>
+                <div class="sub-title" id="2dpose">2D pose estimation in extreme scenarios [Kitamura+ WACV workshop 2022]</div> 
+                <img class="centered-img" src="img/2d-pose.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text"> 3D marker-less motion capture can be achieved by triangulating estimated multi-views 2D poses. 
+                    However, when the 2D pose estimation fails, the 3D motion capture also fails. 
+                    This is particularly challenging for sports performance of athletes, which have extreme poses. 
+                    In extreme poses (like having the head down) state-of-the-art 2D pose estimator such as OpenPose do not work at all. 
+                    In this work, we propose a new method to improve the training of 2D pose estimators for extreme poses by leveraging a new sports dataset and our proposed data augmentation strategy.</p>
+            
+                <br>
+                PAPER 
+                <a href="https://openaccess.thecvf.com/content/WACV2022W/CV4WS/papers/Kitamura_Refining_OpenPose_With_a_New_Sports_Dataset_for_Robust_2D_WACVW_2022_paper.pdf"> 
+                    <span class="iconify pdf-link" data-icon="iconoir:journal" style="color: #85023e;"></span>
+                </a>
+                
+                <br><br>
+                <video width="640" height="480" autoplay controls>
+                    <source src="video/2d-pose.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <br><br>
+
+                <div class="sub-title" id="3dpose">Unsupervised 3D human pose estimation [Cheng+ ICPR 2021]</div>
+                <img class="centered-img" src="img/3d-pose.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text"> 3D human pose estimation from a single 2D video is an extremely difficult task because computing 3D geometry from 2D images is an ill-posed problem. Recent popular solutions adopt fully-supervised learning strategy, which requires to train a deep network on a large-scale ground truth dataset of 3D poses and 2D images. However, such a large-scale dataset with natural images does not exist, which limits the usability of existing methods. While building a complete 3D dataset is tedious and expensive, abundant 2D in-the-wild data is already publicly available. As a consequence, there is a growing interest in the computer vision community to design efficient techniques that use the unsupervised learning strategy, which does not require any ground truth 3D data. Such methods can be trained with only natural 2D images of humans. In this paper we propose an unsupervised method for estimating 3D human pose in videos. The standard approach for unsupervised learning is to use the Generative Adversarial Network (GAN) framework. To improve the performance of 3D human pose estimation in videos, we propose a new GAN network that enforces body consistency over frames in a video.
+                
+                <br>
+                    
+                PAPER 
+                <a href="https://ieeexplore.ieee.org/document/9412270"> 
+                    <span class="iconify pdf-link" data-icon="iconoir:journal" style="color: #85023e;"></span>
+                </a>
+
+            </div>
+
+            <div class="main-content" id="pedestrian-detection">
+                <p class="chapter-title">3D pedestrian detection</p>
+                <div class="sub-title" id="3dpose">3D Pedestrian Localization Using Multiple Cameras [Paulo Lima+ MVA2022]</div>
+                <img class="centered-img" src="img/pedestrian-detect.png" alt="Goal explanation image"> <br>
+                <p class="chapter-text">Pedestrian detection is a critical problem in many areas, such as smart cities, surveillance, monitoring, autonomous driving, and robotics.
+                    AI-based methods have made tremendous progress in the field in the last few years, but good performance is limited to data that match the training datasets.
+                    We present a multi-camera 3D pedestrian detection method that does not need to be trained using data from the target scene.
+                    The core idea of our approach consists in formulating consistency in multiple views as a graph clique cover problem.
+                    We estimate pedestrian ground location on the image plane using a novel method based on human body poses and person's bounding boxes from an off-the-shelf monocular detector.
+                    We then project these locations onto the ground plane and fuse them with a new formulation of a clique cover problem from graph theory.
+                    We propose a new vertex ordering strategy to define fusion priority based on both detection distance and vertex degree.
+                    We also propose an optional step for exploiting pedestrian appearance during fusion by using a domain-generalizable person re-identification model.
+                    Finally, we compute the final 3D ground coordinates of each detected pedestrian with a method based on keypoint triangulation.
+                    We evaluated the proposed approach on the challenging WILDTRACK and MultiviewX datasets.
+                    Our proposed method significantly outperformed state-of-the-art in terms of generalizability.
+                    It obtained a MODA that was approximately 15\% and 2\% better than the best existing generalizable detection technique on WILDTRACK and MultiviewX, respectively.</p>
+            
+                    <br>
+                    PAPER 
+                    <a href="https://dl.acm.org/doi/abs/10.1007/s00138-022-01323-9"> 
+                        <span class="iconify pdf-link" data-icon="iconoir:journal" style="color: #85023e;"></span>
+                    </a>
+            
+            </div>
+
+            
+
+            <div class="main-content" id="vr-app">
+                <p class="chapter-title">Populating VR spaces with digital humans</p>
+                <img class="centered-img" src="img/human-pipeline.png" alt="Pipeline graph" style="width: 1000px; height: auto;"> <br>
+                <p class="chapter-text">Detailed animations of human avatars must be included into the VR system to study the <b>impact of the design</b> on the people
+                    lifestyle. We will develop a new <b>AI-based</b> approach for animated 3D human avatar generation in a given 3D scene. To learn
+                    how to animate and consistently deform the human body and clothes we must first build a new <b>4D</b> (3D+time) human body and
+                    cloth <b>database</b>. <br>
+                    With our 4D human dataset we will design a network to generate <b>realistic animation</b> of humans wearing loose clothes. This
+                    will allow us to <b>populate scenes</b> with diverse human avatars performing daily activities.</p>
+                    <br><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
