@@ -1,1 +1,1 @@
-# Kyuday-Difital Humans &4D capture web site
+# Kyuday-Digital Humans & 4D capture web site
