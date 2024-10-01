@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VortSDF: 3D Modeling with Centroidal Voronoi Tessellation on Signed Distance Field.">
+  <meta name="keywords" content="CVT, NeuS, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VortSDF: 3D Modeling with Centroidal Voronoi Tessellation on Signed Distance Field.</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://diegothomas.github.io/DigitalHumans-lab/human.html">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <!--a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VortSDF: 3D Modeling with Centroidal Voronoi Tessellation on Signed Distance Field</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://diegothomas.github.io/DigitalHumans-lab/human.html">Diego Thomas</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/briactoussaint">Briac Toussaint</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="http://morpheo.inrialpes.fr/~franco/">Jean-Sebastien Franco</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://morpheo.inrialpes.fr/people/Boyer/">Edmond Boyer</a><sup>3</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Kyushu University,</span>
+            <span class="author-block"><sup>2</sup>INRIA Rhone Alpes,</span>
+            <span class="author-block"><sup>3</sup>Meta Reality Labs</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2407.19837"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/diegothomas/VortSDF"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">VortSDF reconstructs detailed 3D surfaces using CVT that adapts to the reconstructed geometry. 
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-man">
+          <video poster="" id="man" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/man.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-stone">
+          <video poster="" id="stone" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/stone.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-durian">
+          <video poster="" id="durian" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/durian.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="bear">
+          <video poster="" id="bear" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/bear.mp4"
+                    type="video/mp4">
+          </video>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Volumetric shape representations have become ubiquitous in multi-view reconstruction tasks. They often build on regular voxel grids as discrete representations of 3D shape functions, such as SDF or radiance fields, either as the full shape model or as sampled instantiations of continuous representations, as with neural networks.  Despite their proven efficiency, voxel representations come with the precision versus complexity trade-off. This inherent limitation can significantly impact performance when moving away from simple and uncluttered scenes. 
+          </p>  
+          <p>
+            In this paper we investigate an alternative discretization strategy with the Centroidal Voronoi Tessellation (CVT). CVTs allow to better partition the observation space with respect to  shape occupancy and to focus the discretization around shape surfaces. To leverage this discretization strategy for multi-view reconstruction, we introduce a volumetric optimization framework that combines explicit SDF fields with a shallow color network, in order to estimate 3D shape properties over tetrahedral grids. Experimental results with Chamfer statistics validate this approach with unprecedented reconstruction quality on various scenarios such as objects, open scenes or human.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <video poster="" id="oral" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/Oral.mp4"
+                    type="video/mp4">
+          </video>
+          <!--<iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Eval. -->
+    <div class="columns is-centered has-text-justified">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate the ability of our approach to reconstruct detailed 3D surfaces compared with the state-of-the-art methods NeuS [Wang 2021], Neus2 [Wang 2023] and Voxurf [Wu 2022]. 
+            We qualitatively and quantitatively evaluate our method on a subset of the BlendedMVS and a subset of the 4D Human Outfit dataset 
+          </p>  
+        </div>
+      </div>
+    </div>
+    <!--/ Eval. -->
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">BlendedMVS</h2>
+          <img src="./static/images/BlendedMVS.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="content">
+        <h2 class="title is-3">4D Human Oufit</h2>
+            <img src="./static/images/4DHuman.png"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+        
+      </div>
+    </div>
+    <!--/ Matting. -->
+</section>
+
+
+<section class="section">
+    <!-- Comparisons. -->
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Visual Comparisons</h2>
+    <div class="content has-text-justified">
+      <p>
+
+      </p>
+    </div>
+
+    <div class="columns is-centered">
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+            <div id="example1" class="bal-container-small">
+    
+              <div class="bal-after">
+                <img src="static/images/comparisons/kinette-ours.png">
+                <div class="bal-afterPosition afterLabel">
+                  Ours
+                </div>
+              </div>
+            
+              <div class="bal-before">
+                <div class="bal-before-inset">
+                <img src="static/images/comparisons/kinette-neus2.png">
+                  <div class="bal-beforePosition beforeLabel">
+                    Neus2 [Wang 2023]
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bal-handle">
+                <span class=" handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example2" class="bal-container-small">
+  
+            <div class="bal-after">
+              <img src="static/images/comparisons/kinette-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kinette-voxurf.png">
+                <div class="bal-beforePosition beforeLabel">
+                  VOXURF [Wu 2022]
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example3" class="bal-container-small">
+  
+            <div class="bal-after">
+              <img src="static/images/comparisons/kinette-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kinette-GT.png">
+                <div class="bal-beforePosition beforeLabel">
+                  Ground truth
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+            <div id="example4" class="bal-container-small">
+    
+              <div class="bal-after">
+                <img src="static/images/comparisons/kinette-dress-ours.png">
+                <div class="bal-afterPosition afterLabel">
+                  Ours
+                </div>
+              </div>
+            
+              <div class="bal-before">
+                <div class="bal-before-inset">
+                <img src="static/images/comparisons/kinette-dress-neus2.png">
+                  <div class="bal-beforePosition beforeLabel">
+                    Neus2 [Wang 2023]
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bal-handle">
+                <span class=" handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example5" class="bal-container-small">
+
+            <div class="bal-after">
+              <img src="static/images/comparisons/kinette-dress-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kinette-dress-voxurf.png">
+                <div class="bal-beforePosition beforeLabel">
+                  VOXURF [Wu 2022]
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example6" class="bal-container-small">
+
+            <div class="bal-after">
+              <img src="static/images/comparisons/kinette-dress-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kinette-dress-GT.png">
+                <div class="bal-beforePosition beforeLabel">
+                  Ground truth
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+            <div id="example7" class="bal-container-small">
+    
+              <div class="bal-after">
+                <img src="static/images/comparisons/kino-cos-ours.png">
+                <div class="bal-afterPosition afterLabel">
+                  Ours
+                </div>
+              </div>
+            
+              <div class="bal-before">
+                <div class="bal-before-inset">
+                <img src="static/images/comparisons/kino-cos-neus2.png">
+                  <div class="bal-beforePosition beforeLabel">
+                    Neus2 [Wang 2023]
+                  </div>
+                </div>
+              </div>
+            
+              <div class="bal-handle">
+                <span class=" handle-left-arrow"></span>
+                <span class="handle-right-arrow"></span>
+              </div>
+            
+            </div>
+          </div>
+        </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example8" class="bal-container-small">
+
+            <div class="bal-after">
+              <img src="static/images/comparisons/kino-cos-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kino-cos-voxurf.png">
+                <div class="bal-beforePosition beforeLabel">
+                  VOXURF [Wu 2022]
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div id="example9" class="bal-container-small">
+
+            <div class="bal-after">
+              <img src="static/images/comparisons/kino-cos-ours.png">
+              <div class="bal-afterPosition afterLabel">
+                Ours
+              </div>
+            </div>
+          
+            <div class="bal-before">
+              <div class="bal-before-inset">
+              <img src="static/images/comparisons/kino-cos-GT.png">
+                <div class="bal-beforePosition beforeLabel">
+                  Ground truth
+                </div>
+              </div>
+            </div>
+          
+            <div class="bal-handle">
+              <span class=" handle-left-arrow"></span>
+              <span class="handle-right-arrow"></span>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+    <!--/ Comparisons. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{thomas2024vortsdf3dmodelingcentroidal,
+  author    = {Diego Thomas and Briac Toussaint and Jean-Sebastien Franco and Edmond Boyer},
+  title     = {VortSDF: 3D Modeling with Centroidal Voronoi Tesselation on Signed Distance Field},
+  journal   = {arXiv},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2407.19837" class="external-link" disabled>
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/diegothomas/VortSDF" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thank the authors of <a href="https://nerfies.github.io">Nerfies</a> that kindly open sourced the template of this website.  .
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="static/js/script.js"></script>
+
+<script>
+    new BeforeAfter({
+        id: '#example1'
+    });
+    new BeforeAfter({
+        id: '#example2'
+    });
+    new BeforeAfter({
+        id: '#example3'
+    });
+    new BeforeAfter({
+        id: '#example4'
+    });
+    new BeforeAfter({
+        id: '#example5'
+    });
+    new BeforeAfter({
+        id: '#example6'
+    });
+    new BeforeAfter({
+        id: '#example7'
+    });
+    new BeforeAfter({
+        id: '#example8'
+    });
+    new BeforeAfter({
+        id: '#example9'
+    });
+
+</script>
+
+</body>
+</html>
